@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   imageWrap: {
     width: '100%',
-    aspectRatio: 3 / 1,
+    height: 120,
     backgroundColor: colors.grayDim,
     alignItems: 'center',
     justifyContent: 'center',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.grayMid,
     letterSpacing: tracking.wide,
   },
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.white,
     letterSpacing: tracking.normal,
   },
   progress: {
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.grayMid,
     letterSpacing: tracking.loose,
   },
