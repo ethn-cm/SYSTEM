@@ -16,7 +16,6 @@ import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
 import { loadQuests, saveQuests } from '../data/storage';
 import type { Quest, QuestType } from '../data/quests';
 import QuestList from '../components/QuestList';
-import GradientBackground from '../components/GradientBackground';
 import type { RootStackParamList } from '../navigation/types';
 
 type Nav = NativeStackNavigationProp<RootStackParamList, 'QuestList'>;
@@ -59,7 +58,6 @@ export default function QuestListScreen() {
   }
 
   return (
-    <GradientBackground>
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <KeyboardAvoidingView
         style={styles.body}
@@ -126,14 +124,13 @@ export default function QuestListScreen() {
         </Pressable>
       )}
     </SafeAreaView>
-    </GradientBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.black,
   },
   body: {
     flex: 1,

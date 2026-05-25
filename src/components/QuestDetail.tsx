@@ -168,7 +168,7 @@ function HoldToAbandon({ onComplete }: { onComplete: () => void }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.black,
   },
   content: {
     paddingHorizontal: spacing.xl,
