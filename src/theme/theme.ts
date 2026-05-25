@@ -7,17 +7,21 @@ export const colors = {
   grayLight: '#999999',
 } as const;
 
+// All text in the app resolves to Haltung Light.
+// All fonts.* tokens point at the same family so existing components
+// don't need to change. Italic is registered separately for any
+// future italic usage.
+const HALTUNG = 'Haltung-Light';
+
 export const fonts = {
-  // Pitch Sans — body/UI typeface
-  regular: 'PitchSans-Regular',
-  medium: 'PitchSans-Medium',
-  mediumItalic: 'PitchSans-MediumItalic',
-  // Idlewild — display typeface
-  displayThin: 'Idlewild-Thin',
-  displayLight: 'Idlewild-Light',
-  displayBook: 'Idlewild-Book',
-  displayMedium: 'Idlewild-Medium',
-  displayBold: 'Idlewild-Bold',
+  regular: HALTUNG,
+  medium: HALTUNG,
+  mediumItalic: 'Haltung-LightItalic',
+  displayThin: HALTUNG,
+  displayLight: HALTUNG,
+  displayBook: HALTUNG,
+  displayMedium: HALTUNG,
+  displayBold: HALTUNG,
 } as const;
 
 export const fontSize = {
@@ -50,12 +54,6 @@ export const breakpoints = {
 } as const;
 
 export const fontMap = {
-  [fonts.regular]: require('../../assets/fonts/PitchSans/PitchSans-Regular.otf'),
-  [fonts.medium]: require('../../assets/fonts/PitchSans/PitchSans-Medium.otf'),
-  [fonts.mediumItalic]: require('../../assets/fonts/PitchSans/PitchSans-MediumItalic.otf'),
-  [fonts.displayThin]: require('../../assets/fonts/Idlewild/Idlewild-Thin.otf'),
-  [fonts.displayLight]: require('../../assets/fonts/Idlewild/Idlewild-Light.otf'),
-  [fonts.displayBook]: require('../../assets/fonts/Idlewild/Idlewild-Book.otf'),
-  [fonts.displayMedium]: require('../../assets/fonts/Idlewild/Idlewild-Medium.otf'),
-  [fonts.displayBold]: require('../../assets/fonts/Idlewild/Idlewild-Bold.otf'),
+  'Haltung-Light': require('../../assets/fonts/Haltung-Light.otf'),
+  'Haltung-LightItalic': require('../../assets/fonts/Haltung-LightItalic.otf'),
 };
