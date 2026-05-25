@@ -6,8 +6,8 @@ import TabBar from '../components/TabBar';
 
 const Tab = createBottomTabNavigator();
 
+const HealthScreen = () => <PlaceholderScreen name="Health" />;
 const InventoryScreen = () => <PlaceholderScreen name="Inventory" />;
-const ProfileScreen = () => <PlaceholderScreen name="Profile" />;
 
 export default function RootTabs() {
   return (
@@ -24,9 +24,9 @@ export default function RootTabs() {
         options={{ tabBarLabel: 'J' }}
       />
       <Tab.Screen
-        name="Memento"
-        component={MementoScreen}
-        options={{ tabBarLabel: 'M' }}
+        name="Health"
+        component={HealthScreen}
+        options={{ tabBarLabel: 'H' }}
       />
       <Tab.Screen
         name="Inventory"
@@ -34,9 +34,9 @@ export default function RootTabs() {
         options={{ tabBarLabel: 'I' }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ tabBarLabel: 'P' }}
+        name="Memento"
+        component={MementoScreen}
+        options={{ tabBarLabel: 'M' }}
       />
     </Tab.Navigator>
   );

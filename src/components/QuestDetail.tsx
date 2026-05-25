@@ -44,6 +44,10 @@ export default function QuestDetail({ quest }: Props) {
 
       <View style={styles.divider} />
 
+      <View style={styles.imagePlaceholder}>
+        <Text style={styles.imagePlaceholderText}>IMAGE</Text>
+      </View>
+
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>
           TASKS — {tasksDone}/{quest.tasks.length}
@@ -132,6 +136,22 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.grayBorder,
     marginVertical: spacing.lg,
+  },
+  imagePlaceholder: {
+    width: '100%',
+    aspectRatio: 16 / 9,
+    backgroundColor: colors.grayDim,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.grayBorder,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.xl,
+  },
+  imagePlaceholderText: {
+    fontFamily: fonts.medium,
+    fontSize: fontSize.micro,
+    color: colors.grayMid,
+    letterSpacing: tracking.wide,
   },
   section: {
     marginBottom: spacing.xl,
