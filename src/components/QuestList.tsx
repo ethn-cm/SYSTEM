@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import {
-  SectionList,
+  ScrollView,
   View,
   Text,
   Pressable,
@@ -10,91 +10,95 @@ import * as Haptics from 'expo-haptics';
 import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
 import { quests as allQuests, type Quest } from '../data/quests';
 import StatusIndicator from './StatusIndicator';
+import MainQuestCard from './MainQuestCard';
 
 interface Props {
   selectedId?: number | null;
   onSelect: (quest: Quest) => void;
 }
 
-interface Section {
-  title: string;
-  data: Quest[];
-}
-
 export default function QuestList({ selectedId, onSelect }: Props) {
-  const sections = useMemo<Section[]>(() => {
-    const active = allQuests.filter((q) => q.status === 'active');
-    const completed = allQuests.filter((q) => q.status === 'completed');
-    const failed = allQuests.filter((q) => q.status === 'failed');
-    return [
-      { title: 'Active', data: active },
-      { title: 'Completed', data: completed },
-      { title: 'Failed', data: failed },
-    ].filter((s) => s.data.length > 0);
+  const { mainQuests, sideQuests } = useMemo(() => {
+    const main = allQuests.filter((q) => q.type === 'Main Quest');
+    const side = allQuests.filter((q) => q.type !== 'Main Quest');
+    return { mainQuests: main, sideQuests: side };
   }, []);
 
   return (
-    <SectionList
-      sections={sections}
-      keyExtractor={(item) => String(item.id)}
-      stickySectionHeadersEnabled={false}
+    <ScrollView
       contentContainerStyle={styles.content}
-      renderSectionHeader={({ section }) => (
+      showsVerticalScrollIndicator={false}
+    >
+      {/* MAIN QUESTS — large cards with image */}
+      <View style={styles.section}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>{section.title.toUpperCase()}</Text>
-          <Text style={styles.sectionCount}>{section.data.length}</Text>
+          <Text style={styles.sectionTitle}>MAIN QUESTS</Text>
+          <Text style={styles.sectionCount}>{mainQuests.length}</Text>
         </View>
-      )}
-      ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-      SectionSeparatorComponent={({ trailingItem, leadingSection }) =>
-        trailingItem || !leadingSection ? null : (
-          <View style={styles.sectionDivider} />
-        )
-      }
-      renderItem={({ item }) => {
-        const isSelected = item.id === selectedId;
-        const isDimmed = item.status !== 'active';
-        return (
-          <Pressable
-            onPress={() => {
-              Haptics.selectionAsync();
-              onSelect(item);
-            }}
-            style={({ pressed }) => [
-              styles.row,
-              pressed && styles.rowPressed,
-              isSelected && styles.rowSelected,
-            ]}
-          >
-            <StatusIndicator status={item.status} />
-            <Text
-              style={[
-                styles.rowTitle,
-                isDimmed && styles.rowTitleDim,
-                isSelected && styles.rowTitleSelected,
+        {mainQuests.map((q) => (
+          <MainQuestCard
+            key={q.id}
+            quest={q}
+            selected={q.id === selectedId}
+            onPress={onSelect}
+          />
+        ))}
+      </View>
+
+      {/* SIDE QUESTS — compact rows */}
+      <View style={styles.section}>
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>SIDE QUESTS</Text>
+          <Text style={styles.sectionCount}>{sideQuests.length}</Text>
+        </View>
+        {sideQuests.map((q) => {
+          const isSelected = q.id === selectedId;
+          const isDimmed = q.status !== 'active';
+          return (
+            <Pressable
+              key={q.id}
+              onPress={() => {
+                Haptics.selectionAsync();
+                onSelect(q);
+              }}
+              style={({ pressed }) => [
+                styles.row,
+                pressed && styles.rowPressed,
+                isSelected && styles.rowSelected,
               ]}
-              numberOfLines={1}
             >
-              {item.title}
-            </Text>
-            <Text style={styles.rowType}>{item.type.toUpperCase()}</Text>
-          </Pressable>
-        );
-      }}
-    />
+              <StatusIndicator status={q.status} />
+              <Text
+                style={[
+                  styles.rowTitle,
+                  isDimmed && styles.rowTitleDim,
+                  isSelected && styles.rowTitleSelected,
+                ]}
+                numberOfLines={1}
+              >
+                {q.title}
+              </Text>
+              <Text style={styles.rowType}>{q.type.toUpperCase()}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   content: {
+    paddingHorizontal: spacing.lg,
     paddingBottom: spacing.xxl,
+  },
+  section: {
+    marginTop: spacing.lg,
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.lg,
     paddingBottom: spacing.sm,
   },
   sectionTitle: {
@@ -108,20 +112,10 @@ const styles = StyleSheet.create({
     fontSize: fontSize.micro,
     color: colors.grayMid,
   },
-  sectionDivider: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.grayBorder,
-    marginHorizontal: spacing.lg,
-    marginTop: spacing.sm,
-  },
-  itemSeparator: {
-    height: 0,
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
-    paddingHorizontal: spacing.lg,
     paddingVertical: 14,
   },
   rowPressed: {

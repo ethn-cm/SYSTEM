@@ -16,55 +16,59 @@ export interface Quest {
   objective: string;
   details: string;
   tasks: Task[];
+  /** Optional image source for the quest (URI or require()). Placeholder used when absent. */
+  image?: any;
 }
 
 export const quests: Quest[] = [
+  // ── MAIN QUESTS — always exactly three ──
   {
     id: 1,
-    title: 'The Signal',
+    title: 'Without The Rope',
     type: 'Main Quest',
     status: 'active',
-    location: 'Sector 7, Undercity',
-    objective: 'Locate the source of the encrypted broadcast',
+    location: 'Everywhere',
+    objective: 'Operate without safety nets',
     details:
-      'A rogue signal has been pulsing through the lower networks for three days. No one knows where it originates. The frequency matches old military encryption — pre-collapse era. Find the source before someone else does.',
+      'The rope is every fallback, every excuse, every soft landing waiting to catch you. Climb without it. Make decisions whose consequences you have to wear. Stop pre-engineering the escape hatch.',
     tasks: [
-      { label: 'Trace the signal origin', done: true },
-      { label: 'Acquire a decryption module', done: true },
-      { label: 'Reach the broadcast point', done: false },
-      { label: 'Neutralize any hostiles on site', done: false },
+      { label: 'Identify the rope', done: false },
+      { label: 'Cut one strand a week', done: false },
+      { label: 'Sit with the exposure', done: false },
     ],
   },
   {
     id: 2,
-    title: 'Dead Drop',
-    type: 'Side Quest',
+    title: 'The Dot and The Line',
+    type: 'Main Quest',
     status: 'active',
-    location: 'Marina District, Pier 14',
-    objective: 'Retrieve the package from the dead drop',
+    location: 'The Studio',
+    objective: 'Earn discipline through craft',
     details:
-      'A contact left something at the old pier — said it was urgent. No details, just coordinates and a time window. The drop expires at midnight.',
+      'The line wanted the dot but had nothing to offer beyond what it was. So it learned to bend, fold, compose — to become worthy by becoming more. Choose the harder, more deliberate form every time.',
     tasks: [
-      { label: 'Go to Pier 14 before midnight', done: false },
-      { label: 'Locate the hidden package', done: false },
-      { label: 'Return to contact', done: false },
+      { label: 'Show up daily', done: false },
+      { label: 'Refuse the easy line', done: false },
+      { label: 'Compose something only you could make', done: false },
     ],
   },
   {
     id: 3,
-    title: 'Ghost in the Machine',
+    title: 'Manners Maketh Man',
     type: 'Main Quest',
     status: 'active',
-    location: 'Neon Heights, Server Farm',
-    objective: 'Investigate the rogue AI fragment',
+    location: 'In Every Room',
+    objective: 'Be unfailingly considerate',
     details:
-      'Reports of a fragmented AI operating independently inside an abandoned server farm. It has been sending messages to random terminals across the district. Could be a trap. Could be something valuable.',
+      'Charm without cruelty. Hold the door. Send the note. Remember the name. The world is largely indifferent — your conduct is the part you control. Let it be impeccable.',
     tasks: [
-      { label: 'Enter the server farm', done: false },
-      { label: 'Interface with the central terminal', done: false },
-      { label: "Decide the AI fragment's fate", done: false },
+      { label: 'Write three thank-you notes', done: false },
+      { label: 'Listen more than you speak', done: false },
+      { label: 'Default to graciousness under stress', done: false },
     ],
   },
+
+  // ── SIDE QUESTS ──
   {
     id: 4,
     title: 'Pest Control',
