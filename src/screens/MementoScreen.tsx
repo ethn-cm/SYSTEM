@@ -51,21 +51,6 @@ export default function MementoScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.titleRow}>
-          <Text style={styles.title}>MEMENTO MORI</Text>
-          <Text style={styles.lifespan} numberOfLines={1}>
-            {LIFE_EXPECTANCY_YEARS} YR
-          </Text>
-        </View>
-
-        <View style={styles.divider} />
-
-        <View style={styles.statsRow}>
-          <Stat label="LIVED" value={formatNumber(weeksLived)} />
-          <Stat label="REMAINING" value={formatNumber(weeksRemaining)} />
-          <Stat label="ELAPSED" value={`${percentLived}%`} />
-        </View>
-
         <View
           style={[
             styles.grid,
