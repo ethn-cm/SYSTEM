@@ -1,11 +1,10 @@
-import { useWindowDimensions, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { colors, fontMap, breakpoints } from './src/theme/theme';
-import RootNavigator from './src/navigation/RootNavigator';
-import SplitLayout from './src/navigation/SplitLayout';
+import { colors, fontMap } from './src/theme/theme';
+import RootTabs from './src/navigation/RootTabs';
 
 const navTheme = {
   ...DarkTheme,
@@ -21,8 +20,6 @@ const navTheme = {
 
 export default function App() {
   const [fontsLoaded] = useFonts(fontMap);
-  const { width } = useWindowDimensions();
-  const isTablet = width >= breakpoints.tablet;
 
   if (!fontsLoaded) {
     return <View style={styles.splash} />;
@@ -31,13 +28,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
-      {isTablet ? (
-        <SplitLayout />
-      ) : (
-        <NavigationContainer theme={navTheme}>
-          <RootNavigator />
-        </NavigationContainer>
-      )}
+      <NavigationContainer theme={navTheme}>
+        <RootTabs />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }

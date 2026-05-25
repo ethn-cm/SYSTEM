@@ -1,14 +1,23 @@
+import { useWindowDimensions } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
-import { colors, fonts, fontSize } from '../theme/theme';
+import { colors, fonts, fontSize, breakpoints } from '../theme/theme';
 import HeaderStats from '../components/HeaderStats';
 import QuestListScreen from '../screens/QuestListScreen';
 import QuestDetailScreen from '../screens/QuestDetailScreen';
+import SplitLayout from './SplitLayout';
 import type { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function RootNavigator() {
+export default function JournalNavigator() {
+  const { width } = useWindowDimensions();
+  const isTablet = width >= breakpoints.tablet;
+
+  if (isTablet) {
+    return <SplitLayout />;
+  }
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -29,7 +38,7 @@ export default function RootNavigator() {
         name="QuestList"
         component={QuestListScreen}
         options={{
-          title: 'SYSTEM',
+          title: 'JOURNAL',
           headerRight: () => <HeaderStats />,
         }}
       />

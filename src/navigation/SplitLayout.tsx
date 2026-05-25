@@ -13,7 +13,7 @@ export default function SplitLayout() {
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
-        <Text style={styles.title}>SYSTEM</Text>
+        <Text style={styles.title}>JOURNAL</Text>
         <HeaderStats />
       </View>
       <View style={styles.body}>
