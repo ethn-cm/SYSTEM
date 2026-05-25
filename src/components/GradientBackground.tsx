@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 interface Props {
   children: ReactNode;
@@ -7,18 +7,28 @@ interface Props {
 
 export default function GradientBackground({ children }: Props) {
   return (
-    <ImageBackground
-      source={require('../../assets/images/gradient.jpeg')}
-      style={styles.bg}
-      resizeMode="cover"
-    >
+    <View style={styles.container}>
+      <Image
+        source={require('../../assets/images/gradient.jpeg')}
+        style={styles.image}
+        resizeMode="cover"
+      />
       {children}
-    </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  bg: {
+  container: {
     flex: 1,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  image: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
   },
 });
