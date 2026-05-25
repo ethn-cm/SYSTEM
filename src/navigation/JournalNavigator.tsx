@@ -1,6 +1,5 @@
-import { useWindowDimensions } from 'react-native';
+import { Platform, Pressable, Text, useWindowDimensions } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Platform } from 'react-native';
 import { colors, fonts, fontSize, breakpoints } from '../theme/theme';
 import QuestListScreen from '../screens/QuestListScreen';
 import QuestDetailScreen from '../screens/QuestDetailScreen';
@@ -41,7 +40,27 @@ export default function JournalNavigator() {
       <Stack.Screen
         name="QuestDetail"
         component={QuestDetailScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.goBack()}
+              hitSlop={16}
+              style={{ paddingRight: 8 }}
+            >
+              <Text
+                style={{
+                  fontFamily: fonts.regular,
+                  fontSize: 12,
+                  color: colors.white,
+                }}
+              >
+                ←
+              </Text>
+            </Pressable>
+          ),
+        })}
       />
     </Stack.Navigator>
   );
