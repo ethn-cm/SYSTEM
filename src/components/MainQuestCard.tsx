@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   imageWrap: {
     width: '100%',
-    aspectRatio: 16 / 9,
+    aspectRatio: 3 / 1,
     backgroundColor: colors.grayDim,
     alignItems: 'center',
     justifyContent: 'center',
