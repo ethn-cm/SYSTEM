@@ -2,7 +2,6 @@ import { useWindowDimensions } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
 import { colors, fonts, fontSize, breakpoints } from '../theme/theme';
-import HeaderStats from '../components/HeaderStats';
 import QuestListScreen from '../screens/QuestListScreen';
 import QuestDetailScreen from '../screens/QuestDetailScreen';
 import SplitLayout from './SplitLayout';
@@ -37,10 +36,7 @@ export default function JournalNavigator() {
       <Stack.Screen
         name="QuestList"
         component={QuestListScreen}
-        options={{
-          title: 'JOURNAL',
-          headerRight: () => <HeaderStats />,
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="QuestDetail"

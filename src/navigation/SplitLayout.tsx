@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
+import { colors } from '../theme/theme';
 import HeaderStats from '../components/HeaderStats';
+import ScreenHeader from '../components/ScreenHeader';
 import QuestList from '../components/QuestList';
 import QuestDetail from '../components/QuestDetail';
 import { quests, type Quest } from '../data/quests';
@@ -12,10 +13,7 @@ export default function SplitLayout() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-      <View style={styles.header}>
-        <Text style={styles.title}>JOURNAL</Text>
-        <HeaderStats />
-      </View>
+      <ScreenHeader title="Journal" right={<HeaderStats />} />
       <View style={styles.body}>
         <View style={styles.sidebar}>
           <QuestList selectedId={selected?.id ?? null} onSelect={setSelected} />
@@ -32,21 +30,6 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.black,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.grayBorder,
-  },
-  title: {
-    fontFamily: fonts.medium,
-    fontSize: fontSize.caption,
-    color: colors.white,
-    letterSpacing: tracking.wide,
   },
   body: {
     flex: 1,

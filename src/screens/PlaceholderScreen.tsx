@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
+import { colors, fonts, fontSize, tracking } from '../theme/theme';
+import ScreenHeader from '../components/ScreenHeader';
 
 interface Props {
   name: string;
@@ -9,9 +10,7 @@ interface Props {
 export default function PlaceholderScreen({ name }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{name.toUpperCase()}</Text>
-      </View>
+      <ScreenHeader title={name} />
       <View style={styles.body}>
         <Text style={styles.placeholder}>COMING SOON</Text>
       </View>
@@ -23,18 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.black,
-  },
-  header: {
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.grayBorder,
-  },
-  headerTitle: {
-    fontFamily: fonts.medium,
-    fontSize: fontSize.caption,
-    color: colors.white,
-    letterSpacing: tracking.wide,
   },
   body: {
     flex: 1,
