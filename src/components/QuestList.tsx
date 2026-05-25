@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.sm,
   },
   sectionTitle: {
-    fontFamily: fonts.medium,
-    fontSize: fontSize.micro,
+    fontFamily: fonts.regular,
+    fontSize: 14,
     color: colors.grayLight,
     letterSpacing: tracking.wide,
   },
   sectionCount: {
     fontFamily: fonts.regular,
-    fontSize: fontSize.micro,
+    fontSize: 14,
     color: colors.grayMid,
   },
   row: {
@@ -127,18 +127,18 @@ const styles = StyleSheet.create({
   rowTitle: {
     flex: 1,
     fontFamily: fonts.regular,
-    fontSize: fontSize.title,
+    fontSize: 14,
     color: colors.white,
   },
   rowTitleDim: {
     color: colors.grayMid,
   },
   rowTitleSelected: {
-    fontFamily: fonts.medium,
+    fontFamily: fonts.regular,
   },
   rowType: {
     fontFamily: fonts.regular,
-    fontSize: fontSize.micro,
+    fontSize: 14,
     color: colors.grayMid,
     letterSpacing: tracking.loose,
   },

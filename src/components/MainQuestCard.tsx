@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   placeholder: {
-    fontFamily: fonts.medium,
-    fontSize: fontSize.micro,
+    fontFamily: fonts.regular,
+    fontSize: 14,
     color: colors.grayMid,
     letterSpacing: tracking.wide,
   },
@@ -86,14 +86,14 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontFamily: fonts.medium,
-    fontSize: fontSize.title,
+    fontFamily: fonts.regular,
+    fontSize: 14,
     color: colors.white,
     letterSpacing: tracking.normal,
   },
   progress: {
     fontFamily: fonts.regular,
-    fontSize: fontSize.micro,
+    fontSize: 14,
     color: colors.grayMid,
     letterSpacing: tracking.loose,
   },
