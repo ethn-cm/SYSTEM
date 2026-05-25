@@ -358,7 +358,7 @@ function ExerciseCardView({
         />
         <DataCell
           label="Rest"
-          value={exercise.rest}
+          value={exercise.rest || '45 sec'}
           onChange={(v) => onUpdate('rest', v)}
         />
       </View>
