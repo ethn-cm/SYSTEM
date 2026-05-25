@@ -5,6 +5,7 @@ import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
 import ScreenHeader from '../components/ScreenHeader';
 import SegmentedToggle from '../components/SegmentedToggle';
 import WardrobeCard from '../components/WardrobeCard';
+import WardrobeRow from '../components/WardrobeRow';
 import {
   wardrobeItems as seedItems,
   type WardrobeItem,
@@ -49,14 +50,21 @@ export default function InventoryScreen() {
         <Text style={styles.countValue}>{visible.length}</Text>
       </View>
       <FlatList
+        // key forces FlatList to remount when switching column count,
+        // which is required by RN when numColumns changes
+        key={mode}
         data={visible}
         keyExtractor={(item) => String(item.id)}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.grid}
-        renderItem={({ item }) => (
-          <WardrobeCard item={item} onAcquire={acquire} />
-        )}
+        numColumns={mode === 'shop' ? 2 : 1}
+        columnWrapperStyle={mode === 'shop' ? styles.row : undefined}
+        contentContainerStyle={mode === 'shop' ? styles.grid : styles.list}
+        renderItem={({ item }) =>
+          mode === 'shop' ? (
+            <WardrobeCard item={item} onAcquire={acquire} />
+          ) : (
+            <WardrobeRow item={item} />
+          )
+        }
         ListEmptyComponent={
           <View style={styles.empty}>
             <Text style={styles.emptyText}>NOTHING HERE YET</Text>
@@ -95,6 +103,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.xxl,
     gap: spacing.md,
+  },
+  list: {
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.xxl,
   },
   row: {
     gap: spacing.md,
