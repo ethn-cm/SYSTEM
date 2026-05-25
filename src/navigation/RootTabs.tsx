@@ -21,22 +21,22 @@ export default function RootTabs() {
       <Tab.Screen
         name="Journal"
         component={JournalNavigator}
-        options={{ tabBarLabel: 'JOURNAL' }}
+        options={{ tabBarLabel: 'J' }}
       />
       <Tab.Screen
         name="Memento"
         component={MementoScreen}
-        options={{ tabBarLabel: 'MEMENTO' }}
+        options={{ tabBarLabel: 'M' }}
       />
       <Tab.Screen
         name="Inventory"
         component={InventoryScreen}
-        options={{ tabBarLabel: 'INVENTORY' }}
+        options={{ tabBarLabel: 'I' }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ tabBarLabel: 'PROFILE' }}
+        options={{ tabBarLabel: 'P' }}
       />
     </Tab.Navigator>
   );

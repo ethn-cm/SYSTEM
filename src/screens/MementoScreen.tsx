@@ -80,6 +80,7 @@ export default function MementoScreen() {
                 style={{
                   width: cellSize,
                   height: cellSize,
+                  borderRadius: cellSize / 2,
                   backgroundColor: isLived
                     ? colors.white
                     : isCurrent
@@ -90,16 +91,6 @@ export default function MementoScreen() {
             );
           })}
         </View>
-
-        <Text style={styles.footnote}>
-          EACH SQUARE = ONE WEEK · {COLUMNS} WEEKS PER ROW · {LIFE_EXPECTANCY_YEARS} ROWS
-        </Text>
-
-        <View style={styles.divider} />
-
-        <Text style={styles.body}>
-          You will not live forever. Most of your weeks are already spent. The rest are not guaranteed. Plan accordingly.
-        </Text>
       </ScrollView>
     </SafeAreaView>
   );
