@@ -1,13 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import JournalNavigator from './JournalNavigator';
-import PlaceholderScreen from '../screens/PlaceholderScreen';
+import HealthScreen from '../screens/HealthScreen';
 import MementoScreen from '../screens/MementoScreen';
 import InventoryScreen from '../screens/InventoryScreen';
 import TabBar from '../components/TabBar';
 
 const Tab = createBottomTabNavigator();
-
-const HealthScreen = () => <PlaceholderScreen name="Health" />;
 
 export default function RootTabs() {
   return (

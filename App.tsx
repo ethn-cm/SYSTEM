@@ -1,9 +1,8 @@
-import { Platform, View, StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { colors, fontMap } from './src/theme/theme';
+import { colors } from './src/theme/theme';
 import RootTabs from './src/navigation/RootTabs';
 
 // Web-only: load Univers Next Pro via Adobe Fonts (Typekit).
@@ -29,12 +28,6 @@ const navTheme = {
 };
 
 export default function App() {
-  const [fontsLoaded] = useFonts(fontMap);
-
-  if (!fontsLoaded) {
-    return <View style={styles.splash} />;
-  }
-
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
@@ -45,9 +38,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  splash: {
-    flex: 1,
-    backgroundColor: colors.black,
-  },
-});
+const _styles = StyleSheet.create({});
