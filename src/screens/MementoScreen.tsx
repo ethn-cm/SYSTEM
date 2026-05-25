@@ -32,13 +32,14 @@ export default function MementoScreen() {
     };
   }, []);
 
-  // Compute square cell size for the current viewport
+  // Compute integer cell size + exact grid width so every circle
+  // renders at the same pixel size and all 52 fit per row precisely.
   const sideMargin = spacing.xl;
   const gap = 2;
   const containerWidth = width - sideMargin * 2;
-  // On iPad-width viewports cap the grid so it doesn't get huge
   const maxGridWidth = Math.min(containerWidth, 560);
-  const cellSize = (maxGridWidth - gap * (COLUMNS - 1)) / COLUMNS;
+  const cellSize = Math.floor((maxGridWidth - gap * (COLUMNS - 1)) / COLUMNS);
+  const gridWidth = cellSize * COLUMNS + gap * (COLUMNS - 1);
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
@@ -68,7 +69,7 @@ export default function MementoScreen() {
         <View
           style={[
             styles.grid,
-            { width: maxGridWidth, gap },
+            { width: gridWidth, gap },
           ]}
         >
           {Array.from({ length: totalWeeks }, (_, i) => {
