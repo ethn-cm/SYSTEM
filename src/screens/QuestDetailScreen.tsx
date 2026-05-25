@@ -1,6 +1,6 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
+import { useRoute, type RouteProp } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
 import { colors } from '../theme/theme';
 import { loadQuests, saveQuests } from '../data/storage';
@@ -10,7 +10,6 @@ import type { RootStackParamList } from '../navigation/types';
 
 export default function QuestDetailScreen() {
   const route = useRoute<RouteProp<RootStackParamList, 'QuestDetail'>>();
-  const navigation = useNavigation();
   const [quest, setQuest] = useState<Quest | null>(null);
 
   useEffect(() => {
@@ -18,12 +17,6 @@ export default function QuestDetailScreen() {
       setQuest(all.find((q) => q.id === route.params.questId) ?? null);
     });
   }, [route.params.questId]);
-
-  useLayoutEffect(() => {
-    if (quest) {
-      navigation.setOptions({ title: quest.title });
-    }
-  }, [navigation, quest]);
 
   async function handleAbandon() {
     if (!quest) return;
