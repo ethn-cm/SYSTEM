@@ -1,6 +1,6 @@
 import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { colors, fonts, breakpoints, spacing } from '../theme/theme';
+import { colors, fonts, fontSize, breakpoints, spacing } from '../theme/theme';
 import QuestListScreen from '../screens/QuestListScreen';
 import QuestDetailScreen from '../screens/QuestDetailScreen';
 import SplitLayout from './SplitLayout';
