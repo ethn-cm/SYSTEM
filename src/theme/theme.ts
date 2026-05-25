@@ -7,10 +7,7 @@ export const colors = {
   grayLight: '#999999',
 } as const;
 
-// All text in the app resolves to Haltung Light.
-// All fonts.* tokens point at the same family so existing components
-// don't need to change. Italic is registered separately for any
-// future italic usage.
+// All text resolves to Haltung Light.
 const HALTUNG = 'Haltung-Light';
 
 export const fonts = {
@@ -24,13 +21,15 @@ export const fonts = {
   displayBold: HALTUNG,
 } as const;
 
+// Two-tier hierarchy in the Teenage Engineering style:
+// small body/labels (12) and large primary labels (22).
 export const fontSize = {
   micro: 12,
   caption: 12,
   body: 12,
-  title: 12,
-  heading: 12,
-  display: 12,
+  title: 22,
+  heading: 22,
+  display: 22,
 } as const;
 
 export const spacing = {
@@ -42,11 +41,13 @@ export const spacing = {
   xxl: 32,
 } as const;
 
+// 1% of base font size (12). Subtle, matches TE-style natural spacing.
+const ONE_PERCENT = 0.12;
 export const tracking = {
-  tight: 0.5,
-  normal: 1,
-  loose: 2,
-  wide: 3,
+  tight: ONE_PERCENT,
+  normal: ONE_PERCENT,
+  loose: ONE_PERCENT,
+  wide: ONE_PERCENT,
 } as const;
 
 export const breakpoints = {
