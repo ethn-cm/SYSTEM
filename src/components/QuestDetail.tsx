@@ -1,21 +1,30 @@
+import { useEffect, useRef } from 'react';
 import {
+  Animated,
+  Easing,
   ScrollView,
   View,
   Text,
+  Image,
+  Pressable,
   StyleSheet,
 } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
 import type { Quest } from '../data/quests';
 
+const HOLD_DURATION_MS = 1200;
+
 interface Props {
   quest: Quest | null;
+  onAbandon?: () => void;
 }
 
-export default function QuestDetail({ quest }: Props) {
+export default function QuestDetail({ quest, onAbandon }: Props) {
   if (!quest) {
     return (
       <View style={styles.empty}>
-        <Text style={styles.emptyText}>SELECT A QUEST</Text>
+        <Text style={styles.emptyText}>Select a Quest</Text>
       </View>
     );
   }
@@ -37,20 +46,28 @@ export default function QuestDetail({ quest }: Props) {
               quest.status === 'active' && styles.statusActive,
             ]}
           >
-            {quest.status.toUpperCase()}
+            {quest.status[0].toUpperCase() + quest.status.slice(1)}
           </Text>
         </View>
       </View>
 
       <View style={styles.divider} />
 
-      <View style={styles.imagePlaceholder}>
-        <Text style={styles.imagePlaceholderText}>IMAGE</Text>
-      </View>
+      {quest.image ? (
+        <Image
+          source={quest.image}
+          style={styles.headerImage}
+          resizeMode="cover"
+        />
+      ) : (
+        <View style={styles.imagePlaceholder}>
+          <Text style={styles.imagePlaceholderText}>Image</Text>
+        </View>
+      )}
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>
-          TASKS — {tasksDone}/{quest.tasks.length}
+          Tasks — {tasksDone}/{quest.tasks.length}
         </Text>
         <View style={styles.taskList}>
           {quest.tasks.map((task, i) => (
@@ -76,11 +93,75 @@ export default function QuestDetail({ quest }: Props) {
         </View>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>DETAILS</Text>
-        <Text style={styles.body}>{quest.details}</Text>
-      </View>
+      {quest.details ? (
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Details</Text>
+          <Text style={styles.body}>{quest.details}</Text>
+        </View>
+      ) : null}
+
+      {quest.status === 'active' && onAbandon ? (
+        <HoldToAbandon onComplete={onAbandon} />
+      ) : null}
     </ScrollView>
+  );
+}
+
+function HoldToAbandon({ onComplete }: { onComplete: () => void }) {
+  const fillAnim = useRef(new Animated.Value(0)).current;
+  const fireTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cancel any pending fire on unmount
+  useEffect(() => {
+    return () => {
+      if (fireTimer.current) clearTimeout(fireTimer.current);
+    };
+  }, []);
+
+  const startHold = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Animated.timing(fillAnim, {
+      toValue: 1,
+      duration: HOLD_DURATION_MS,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start();
+    fireTimer.current = setTimeout(() => {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+      onComplete();
+    }, HOLD_DURATION_MS);
+  };
+
+  const cancelHold = () => {
+    if (fireTimer.current) {
+      clearTimeout(fireTimer.current);
+      fireTimer.current = null;
+    }
+    Animated.timing(fillAnim, {
+      toValue: 0,
+      duration: 180,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const widthPct = fillAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%'],
+  });
+
+  return (
+    <Pressable
+      onPressIn={startHold}
+      onPressOut={cancelHold}
+      style={styles.abandonButton}
+    >
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.abandonFill, { width: widthPct }]}
+      />
+      <Text style={styles.abandonText}>Hold to Abandon</Text>
+    </Pressable>
   );
 }
 
@@ -137,9 +218,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.grayBorder,
     marginVertical: spacing.lg,
   },
+  headerImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 4,
+    marginBottom: spacing.xl,
+  },
   imagePlaceholder: {
     width: '100%',
-    aspectRatio: 16 / 9,
+    height: 200,
     backgroundColor: colors.grayDim,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.grayBorder,
@@ -204,5 +291,29 @@ const styles = StyleSheet.create({
   taskLabelDone: {
     color: colors.grayMid,
     textDecorationLine: 'line-through',
+  },
+  abandonButton: {
+    marginTop: spacing.lg,
+    paddingVertical: spacing.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.grayBorder,
+    borderRadius: 4,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  abandonFill: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: colors.white,
+  },
+  abandonText: {
+    fontFamily: fonts.medium,
+    fontSize: fontSize.caption,
+    color: colors.grayMid,
+    letterSpacing: tracking.wide,
   },
 });
