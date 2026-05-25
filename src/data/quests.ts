@@ -27,6 +27,7 @@ export const quests: Quest[] = [
     title: 'Without The Rope',
     type: 'Main Quest',
     status: 'active',
+    image: require('../../assets/images/Banners/IMG_6849.jpg'),
     location: 'Everywhere',
     objective: 'Operate without safety nets',
     details:
@@ -42,6 +43,7 @@ export const quests: Quest[] = [
     title: 'The Dot and The Line',
     type: 'Main Quest',
     status: 'active',
+    image: require('../../assets/images/Banners/IMG_6878.jpg'),
     location: 'The Studio',
     objective: 'Earn discipline through craft',
     details:
@@ -57,6 +59,7 @@ export const quests: Quest[] = [
     title: 'Manners Maketh Man',
     type: 'Main Quest',
     status: 'active',
+    image: require('../../assets/images/Banners/IMG_6897.jpg'),
     location: 'In Every Room',
     objective: 'Be unfailingly considerate',
     details:

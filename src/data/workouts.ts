@@ -6,6 +6,7 @@ export interface Exercise {
   reps: string;
   load: string;
   rest: string;
+  image?: string;
 }
 
 export interface WorkoutSection {

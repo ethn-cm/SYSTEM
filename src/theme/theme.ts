@@ -7,31 +7,26 @@ export const colors = {
   grayLight: '#999999',
 } as const;
 
-// All type across the app uses the same font (Univers Next Pro Extra Light
-// from Adobe Fonts, loaded via Typekit on web) at the same size. Hierarchy
-// comes from tracking, spacing, and color alone.
-const UNIVERSAL_FONT = 'univers-next-pro';
-const UNIVERSAL_SIZE = 14;
-
 export const fonts = {
-  regular: UNIVERSAL_FONT,
-  medium: UNIVERSAL_FONT,
-  mediumItalic: UNIVERSAL_FONT,
-  displayThin: UNIVERSAL_FONT,
-  displayLight: UNIVERSAL_FONT,
-  displayBook: UNIVERSAL_FONT,
-  displayMedium: UNIVERSAL_FONT,
-  displayBold: UNIVERSAL_FONT,
-  univers: UNIVERSAL_FONT,
+  // Pitch Sans — body/UI typeface
+  regular: 'PitchSans-Regular',
+  medium: 'PitchSans-Medium',
+  mediumItalic: 'PitchSans-MediumItalic',
+  // Idlewild — display typeface
+  displayThin: 'Idlewild-Thin',
+  displayLight: 'Idlewild-Light',
+  displayBook: 'Idlewild-Book',
+  displayMedium: 'Idlewild-Medium',
+  displayBold: 'Idlewild-Bold',
 } as const;
 
 export const fontSize = {
-  micro: UNIVERSAL_SIZE,
-  caption: UNIVERSAL_SIZE,
-  body: UNIVERSAL_SIZE,
-  title: UNIVERSAL_SIZE,
-  heading: UNIVERSAL_SIZE,
-  display: UNIVERSAL_SIZE,
+  micro: 10,
+  caption: 11,
+  body: 13,
+  title: 15,
+  heading: 22,
+  display: 28,
 } as const;
 
 export const spacing = {
@@ -54,6 +49,13 @@ export const breakpoints = {
   tablet: 768,
 } as const;
 
-// Empty — useFonts resolves immediately. Local .otf files remain on disk
-// in assets/fonts/ for when you want to bundle Univers Next Pro for native.
-export const fontMap = {};
+export const fontMap = {
+  [fonts.regular]: require('../../assets/fonts/PitchSans/PitchSans-Regular.otf'),
+  [fonts.medium]: require('../../assets/fonts/PitchSans/PitchSans-Medium.otf'),
+  [fonts.mediumItalic]: require('../../assets/fonts/PitchSans/PitchSans-MediumItalic.otf'),
+  [fonts.displayThin]: require('../../assets/fonts/Idlewild/Idlewild-Thin.otf'),
+  [fonts.displayLight]: require('../../assets/fonts/Idlewild/Idlewild-Light.otf'),
+  [fonts.displayBook]: require('../../assets/fonts/Idlewild/Idlewild-Book.otf'),
+  [fonts.displayMedium]: require('../../assets/fonts/Idlewild/Idlewild-Medium.otf'),
+  [fonts.displayBold]: require('../../assets/fonts/Idlewild/Idlewild-Bold.otf'),
+};
