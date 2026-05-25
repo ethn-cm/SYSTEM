@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   title: {
-    fontFamily: fonts.displayBold,
+    fontFamily: fonts.displayLight,
     fontSize: fontSize.display,
     color: colors.white,
     lineHeight: fontSize.display * 1.15,
