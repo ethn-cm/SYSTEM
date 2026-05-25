@@ -23,10 +23,13 @@ export default function WardrobeCard({ item, onAcquire }: Props) {
         </Text>
         <View style={styles.metaRow}>
           <Text style={styles.detail} numberOfLines={1}>
-            {item.color.toUpperCase()}
+            {item.color}
           </Text>
-          <Text style={styles.detail}>{item.season.toUpperCase()}</Text>
+          <Text style={styles.detail}>{item.season}</Text>
         </View>
+        {isWishlist && item.price != null ? (
+          <Text style={styles.price}>${item.price.toLocaleString('en-US')}</Text>
+        ) : null}
         {isWishlist && onAcquire ? (
           <Pressable
             onPress={() => {
@@ -38,7 +41,7 @@ export default function WardrobeCard({ item, onAcquire }: Props) {
               pressed && styles.actionPressed,
             ]}
           >
-            <Text style={styles.actionLabel}>ACQUIRE</Text>
+            <Text style={styles.actionLabel}>Acquire</Text>
           </Pressable>
         ) : null}
       </View>
@@ -83,6 +86,12 @@ const styles = StyleSheet.create({
     fontSize: fontSize.micro,
     color: colors.grayMid,
     letterSpacing: tracking.loose,
+  },
+  price: {
+    fontFamily: fonts.medium,
+    fontSize: fontSize.body,
+    color: colors.white,
+    marginTop: spacing.sm,
   },
   action: {
     marginTop: spacing.md,

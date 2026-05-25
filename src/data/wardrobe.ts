@@ -17,6 +17,8 @@ export interface WardrobeItem {
   season: Season;
   brand: string;
   status: ItemStatus;
+  /** Price in USD. Only meaningful for wishlist items shown in the shop. */
+  price?: number;
 }
 
 export const wardrobeItems: WardrobeItem[] = [
@@ -91,6 +93,7 @@ export const wardrobeItems: WardrobeItem[] = [
     season: 'Fall',
     brand: 'Auralee',
     status: 'wishlist',
+    price: 890,
   },
   {
     id: 9,
@@ -100,6 +103,7 @@ export const wardrobeItems: WardrobeItem[] = [
     season: 'Spring',
     brand: 'Margaret Howell',
     status: 'wishlist',
+    price: 320,
   },
   {
     id: 10,
@@ -109,6 +113,7 @@ export const wardrobeItems: WardrobeItem[] = [
     season: 'All',
     brand: 'Our Legacy',
     status: 'wishlist',
+    price: 310,
   },
   {
     id: 11,
@@ -118,6 +123,7 @@ export const wardrobeItems: WardrobeItem[] = [
     season: 'Fall',
     brand: 'Paraboot',
     status: 'wishlist',
+    price: 620,
   },
   {
     id: 12,
@@ -127,5 +133,6 @@ export const wardrobeItems: WardrobeItem[] = [
     season: 'Winter',
     brand: 'Drake’s',
     status: 'wishlist',
+    price: 180,
   },
 ];
