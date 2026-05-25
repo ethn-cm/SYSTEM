@@ -1,25 +1,33 @@
-export const QUEST_STATUS = {
-  ACTIVE: 'active',
-  COMPLETED: 'completed',
-  FAILED: 'failed',
-};
+export type QuestStatus = 'active' | 'completed' | 'failed';
 
-export const QUEST_TYPE = {
-  MAIN: 'Main Quest',
-  SIDE: 'Side Quest',
-  BOUNTY: 'Bounty',
-  ERRAND: 'Errand',
-};
+export type QuestType = 'Main Quest' | 'Side Quest' | 'Bounty' | 'Errand';
 
-export const quests = [
+export interface Task {
+  label: string;
+  done: boolean;
+}
+
+export interface Quest {
+  id: number;
+  title: string;
+  type: QuestType;
+  status: QuestStatus;
+  location: string;
+  objective: string;
+  details: string;
+  tasks: Task[];
+}
+
+export const quests: Quest[] = [
   {
     id: 1,
     title: 'The Signal',
-    type: QUEST_TYPE.MAIN,
-    status: QUEST_STATUS.ACTIVE,
+    type: 'Main Quest',
+    status: 'active',
     location: 'Sector 7, Undercity',
     objective: 'Locate the source of the encrypted broadcast',
-    details: 'A rogue signal has been pulsing through the lower networks for three days. No one knows where it originates. The frequency matches old military encryption — pre-collapse era. Find the source before someone else does.',
+    details:
+      'A rogue signal has been pulsing through the lower networks for three days. No one knows where it originates. The frequency matches old military encryption — pre-collapse era. Find the source before someone else does.',
     tasks: [
       { label: 'Trace the signal origin', done: true },
       { label: 'Acquire a decryption module', done: true },
@@ -30,11 +38,12 @@ export const quests = [
   {
     id: 2,
     title: 'Dead Drop',
-    type: QUEST_TYPE.SIDE,
-    status: QUEST_STATUS.ACTIVE,
+    type: 'Side Quest',
+    status: 'active',
     location: 'Marina District, Pier 14',
     objective: 'Retrieve the package from the dead drop',
-    details: 'A contact left something at the old pier — said it was urgent. No details, just coordinates and a time window. The drop expires at midnight.',
+    details:
+      'A contact left something at the old pier — said it was urgent. No details, just coordinates and a time window. The drop expires at midnight.',
     tasks: [
       { label: 'Go to Pier 14 before midnight', done: false },
       { label: 'Locate the hidden package', done: false },
@@ -44,25 +53,27 @@ export const quests = [
   {
     id: 3,
     title: 'Ghost in the Machine',
-    type: QUEST_TYPE.MAIN,
-    status: QUEST_STATUS.ACTIVE,
+    type: 'Main Quest',
+    status: 'active',
     location: 'Neon Heights, Server Farm',
     objective: 'Investigate the rogue AI fragment',
-    details: 'Reports of a fragmented AI operating independently inside an abandoned server farm. It has been sending messages to random terminals across the district. Could be a trap. Could be something valuable.',
+    details:
+      'Reports of a fragmented AI operating independently inside an abandoned server farm. It has been sending messages to random terminals across the district. Could be a trap. Could be something valuable.',
     tasks: [
       { label: 'Enter the server farm', done: false },
       { label: 'Interface with the central terminal', done: false },
-      { label: 'Decide the AI fragment\'s fate', done: false },
+      { label: "Decide the AI fragment's fate", done: false },
     ],
   },
   {
     id: 4,
     title: 'Pest Control',
-    type: QUEST_TYPE.BOUNTY,
-    status: QUEST_STATUS.COMPLETED,
+    type: 'Bounty',
+    status: 'completed',
     location: 'Industrial Zone, Block 9',
     objective: 'Eliminate the drone swarm terrorizing workers',
-    details: 'A malfunctioning drone swarm has been harassing factory workers in Block 9. Someone reprogrammed their patrol routes to target civilians. The factory foreman is offering good money to anyone who can shut them down.',
+    details:
+      'A malfunctioning drone swarm has been harassing factory workers in Block 9. Someone reprogrammed their patrol routes to target civilians. The factory foreman is offering good money to anyone who can shut them down.',
     tasks: [
       { label: 'Travel to Block 9', done: true },
       { label: 'Locate the drone control node', done: true },
@@ -73,11 +84,12 @@ export const quests = [
   {
     id: 5,
     title: 'The Collector',
-    type: QUEST_TYPE.SIDE,
-    status: QUEST_STATUS.COMPLETED,
+    type: 'Side Quest',
+    status: 'completed',
     location: 'Old Market, Level 2',
     objective: 'Find and deliver the three pre-war artifacts',
-    details: 'An eccentric collector in the Old Market is paying top dollar for pre-war relics. Three specific items: a military badge, a circuit board from a defunct satellite, and a sealed data core.',
+    details:
+      'An eccentric collector in the Old Market is paying top dollar for pre-war relics. Three specific items: a military badge, a circuit board from a defunct satellite, and a sealed data core.',
     tasks: [
       { label: 'Find the military badge', done: true },
       { label: 'Recover the satellite circuit board', done: true },
@@ -88,11 +100,12 @@ export const quests = [
   {
     id: 6,
     title: 'Wrong Turn',
-    type: QUEST_TYPE.ERRAND,
-    status: QUEST_STATUS.FAILED,
+    type: 'Errand',
+    status: 'failed',
     location: 'Transit Hub, Line 4',
     objective: 'Escort the courier through hostile territory',
-    details: 'A courier needed safe passage through Line 4. The route was supposed to be clear. It wasn\'t.',
+    details:
+      "A courier needed safe passage through Line 4. The route was supposed to be clear. It wasn't.",
     tasks: [
       { label: 'Meet the courier at the station', done: true },
       { label: 'Clear the route through Line 4', done: true },
@@ -102,11 +115,12 @@ export const quests = [
   {
     id: 7,
     title: 'Blackout',
-    type: QUEST_TYPE.BOUNTY,
-    status: QUEST_STATUS.ACTIVE,
+    type: 'Bounty',
+    status: 'active',
     location: 'Power Grid, Substation 12',
     objective: 'Restore power to the residential block',
-    details: 'Someone is siphoning power from Substation 12, leaving three residential blocks in the dark. Find who is responsible and put a stop to it. The residents are getting desperate.',
+    details:
+      'Someone is siphoning power from Substation 12, leaving three residential blocks in the dark. Find who is responsible and put a stop to it. The residents are getting desperate.',
     tasks: [
       { label: 'Investigate Substation 12', done: true },
       { label: 'Trace the unauthorized power line', done: false },
@@ -116,11 +130,12 @@ export const quests = [
   {
     id: 8,
     title: 'Supply Run',
-    type: QUEST_TYPE.ERRAND,
-    status: QUEST_STATUS.ACTIVE,
+    type: 'Errand',
+    status: 'active',
     location: 'Warehouse District',
     objective: 'Secure medical supplies from the abandoned warehouse',
-    details: 'The clinic is running low on critical supplies. An abandoned warehouse on the east side supposedly has a cache of pre-war medical equipment. Get in, grab what you can, get out.',
+    details:
+      'The clinic is running low on critical supplies. An abandoned warehouse on the east side supposedly has a cache of pre-war medical equipment. Get in, grab what you can, get out.',
     tasks: [
       { label: 'Reach the warehouse', done: false },
       { label: 'Search for medical supplies', done: false },
