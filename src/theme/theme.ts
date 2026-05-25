@@ -43,10 +43,10 @@ export const spacing = {
 } as const;
 
 export const tracking = {
-  tight: 0,
-  normal: 0,
-  loose: 0,
-  wide: 0,
+  tight: 0.5,
+  normal: 1,
+  loose: 2,
+  wide: 3,
 } as const;
 
 export const breakpoints = {
