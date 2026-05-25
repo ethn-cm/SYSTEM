@@ -8,47 +8,50 @@ import {
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
-import { quests as allQuests, type Quest } from '../data/quests';
+import type { Quest } from '../data/quests';
 import StatusIndicator from './StatusIndicator';
 import MainQuestCard from './MainQuestCard';
 
 interface Props {
+  quests: Quest[];
   selectedId?: number | null;
   onSelect: (quest: Quest) => void;
 }
 
-export default function QuestList({ selectedId, onSelect }: Props) {
+export default function QuestList({ quests, selectedId, onSelect }: Props) {
   const { mainQuests, sideQuests } = useMemo(() => {
-    const main = allQuests.filter((q) => q.type === 'Main Quest');
-    const side = allQuests.filter((q) => q.type !== 'Main Quest');
+    const main = quests.filter((q) => q.type === 'Main Quest');
+    const side = quests.filter((q) => q.type !== 'Main Quest');
     return { mainQuests: main, sideQuests: side };
-  }, []);
+  }, [quests]);
 
   return (
     <ScrollView
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      {/* MAIN QUESTS — large cards with image */}
+      {/* MAIN QUESTS — square tiles in a row */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>MAIN QUESTS</Text>
+          <Text style={styles.sectionTitle}>Main Quests</Text>
           <Text style={styles.sectionCount}>{mainQuests.length}</Text>
         </View>
-        {mainQuests.map((q) => (
-          <MainQuestCard
-            key={q.id}
-            quest={q}
-            selected={q.id === selectedId}
-            onPress={onSelect}
-          />
-        ))}
+        <View style={styles.mainQuestRow}>
+          {mainQuests.map((q) => (
+            <MainQuestCard
+              key={q.id}
+              quest={q}
+              selected={q.id === selectedId}
+              onPress={onSelect}
+            />
+          ))}
+        </View>
       </View>
 
       {/* SIDE QUESTS — compact rows */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>SIDE QUESTS</Text>
+          <Text style={styles.sectionTitle}>Side Quests</Text>
           <Text style={styles.sectionCount}>{sideQuests.length}</Text>
         </View>
         {sideQuests.map((q) => {
@@ -78,7 +81,7 @@ export default function QuestList({ selectedId, onSelect }: Props) {
               >
                 {q.title}
               </Text>
-              <Text style={styles.rowType}>{q.type.toUpperCase()}</Text>
+              <Text style={styles.rowType}>{q.type}</Text>
             </Pressable>
           );
         })}
@@ -95,6 +98,10 @@ const styles = StyleSheet.create({
   section: {
     marginTop: spacing.lg,
   },
+  mainQuestRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -103,13 +110,13 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.grayLight,
     letterSpacing: tracking.wide,
   },
   sectionCount: {
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.grayMid,
   },
   row: {
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
   rowTitle: {
     flex: 1,
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.white,
   },
   rowTitleDim: {
@@ -138,7 +145,7 @@ const styles = StyleSheet.create({
   },
   rowType: {
     fontFamily: fonts.regular,
-    fontSize: 14,
+    fontSize: fontSize.body,
     color: colors.grayMid,
     letterSpacing: tracking.loose,
   },

@@ -35,7 +35,7 @@ export default function MainQuestCard({ quest, selected, onPress }: Props) {
         <Text style={styles.title} numberOfLines={2}>
           {quest.title}
         </Text>
-        <Text style={styles.progress}>
+        <Text style={styles.progress} numberOfLines={1}>
           {doneCount}/{quest.tasks.length}
         </Text>
       </View>
@@ -45,10 +45,10 @@ export default function MainQuestCard({ quest, selected, onPress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
     backgroundColor: colors.black,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.grayBorder,
-    marginBottom: spacing.md,
   },
   pressed: {
     backgroundColor: colors.grayDim,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   imageWrap: {
     width: '100%',
-    height: 120,
+    aspectRatio: 1,
     backgroundColor: colors.grayDim,
     alignItems: 'center',
     justifyContent: 'center',
@@ -75,17 +75,13 @@ const styles = StyleSheet.create({
     letterSpacing: tracking.wide,
   },
   meta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-    gap: spacing.md,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.sm,
+    gap: 2,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grayBorder,
   },
   title: {
-    flex: 1,
     fontFamily: fonts.regular,
     fontSize: fontSize.body,
     color: colors.white,
