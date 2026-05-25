@@ -130,10 +130,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.displayLight,
-    fontSize: fontSize.display,
+    fontSize: fontSize.heading,
     color: colors.white,
-    lineHeight: fontSize.display * 1.15,
-    letterSpacing: tracking.tight,
+    lineHeight: fontSize.heading * 1.2,
+    letterSpacing: tracking.wide,
     marginBottom: spacing.lg,
   },
   metaBlock: {
