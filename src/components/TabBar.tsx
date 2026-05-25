@@ -56,7 +56,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
                   isFocused ? styles.labelActive : styles.labelInactive,
                 ]}
               >
-                {String(label).toUpperCase()}
+                {String(label)}
               </Text>
               <View style={[styles.indicator, isFocused && styles.indicatorActive]} />
             </Pressable>

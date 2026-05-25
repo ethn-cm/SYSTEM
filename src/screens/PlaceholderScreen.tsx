@@ -1,18 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, fonts, fontSize, tracking } from '../theme/theme';
-import ScreenHeader from '../components/ScreenHeader';
 
 interface Props {
   name: string;
 }
 
-export default function PlaceholderScreen({ name }: Props) {
+export default function PlaceholderScreen({ name: _name }: Props) {
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <ScreenHeader title={name} />
       <View style={styles.body}>
-        <Text style={styles.placeholder}>COMING SOON</Text>
+        <Text style={styles.placeholder}>Coming Soon</Text>
       </View>
     </SafeAreaView>
   );

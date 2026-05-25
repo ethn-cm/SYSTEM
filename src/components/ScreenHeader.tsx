@@ -10,7 +10,7 @@ interface Props {
 export default function ScreenHeader({ title, right }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title.toUpperCase()}</Text>
+      <Text style={styles.title}>{title}</Text>
       {right ? <View style={styles.right}>{right}</View> : null}
     </View>
   );

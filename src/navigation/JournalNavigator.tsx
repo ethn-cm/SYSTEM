@@ -28,7 +28,7 @@ export default function JournalNavigator() {
         },
         headerShadowVisible: false,
         headerLargeTitleShadowVisible: false,
-        headerBackTitle: 'BACK',
+        headerBackTitle: 'Back',
         contentStyle: { backgroundColor: colors.black },
         animation: Platform.OS === 'ios' ? 'default' : 'slide_from_right',
       }}

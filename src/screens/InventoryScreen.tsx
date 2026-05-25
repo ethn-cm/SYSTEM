@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
-import ScreenHeader from '../components/ScreenHeader';
 import SegmentedToggle from '../components/SegmentedToggle';
 import WardrobeCard from '../components/WardrobeCard';
 import WardrobeRow from '../components/WardrobeRow';
@@ -41,11 +40,10 @@ export default function InventoryScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <ScreenHeader title="Inventory" />
       <SegmentedToggle options={MODE_OPTIONS} value={mode} onChange={setMode} />
       <View style={styles.countRow}>
         <Text style={styles.countLabel}>
-          {mode === 'inventory' ? 'OWNED' : 'WISHLIST'}
+          {mode === 'inventory' ? 'Owned' : 'Wishlist'}
         </Text>
         <Text style={styles.countValue}>{visible.length}</Text>
       </View>
@@ -67,7 +65,7 @@ export default function InventoryScreen() {
         }
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text style={styles.emptyText}>NOTHING HERE YET</Text>
+            <Text style={styles.emptyText}>Nothing here yet</Text>
           </View>
         }
       />

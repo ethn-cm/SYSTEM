@@ -43,7 +43,7 @@ export const initialProgram: WorkoutDay[] = [
     label: 'A',
     sections: [
       {
-        title: 'Movement Prep',
+        title: 'Warm-Up',
         exercises: [
           { id: 'a-mp-1', name: 'Pigeon Mob', notes: 'SMR (Glute - 30 sec), Pigeon Mob', sets: 1, reps: ':45 each', load: '', rest: '' },
           { id: 'a-mp-2', name: 'Side Lying T-Spine w/ Shoulder Sweep', notes: '', sets: 1, reps: ':45 each', load: '', rest: '' },
@@ -63,38 +63,46 @@ export const initialProgram: WorkoutDay[] = [
           { id: 'a-rt-7', name: 'Straight Arm Pulldown', notes: 'Straight Bar', sets: 2, reps: '12', load: '40lb', rest: '60' },
         ],
       },
+      {
+        title: 'Steady State Cardio',
+        exercises: [],
+      },
     ],
   },
   {
     id: 'day-b',
     label: 'B',
     sections: [
-      { title: 'Movement Prep', exercises: [] },
+      { title: 'Warm-Up', exercises: [] },
       { title: 'Resistance Training', exercises: [] },
+      { title: 'Steady State Cardio', exercises: [] },
     ],
   },
   {
     id: 'day-c',
     label: 'C',
     sections: [
-      { title: 'Movement Prep', exercises: [] },
+      { title: 'Warm-Up', exercises: [] },
       { title: 'Resistance Training', exercises: [] },
+      { title: 'Steady State Cardio', exercises: [] },
     ],
   },
   {
     id: 'day-d',
     label: 'D',
     sections: [
-      { title: 'Movement Prep', exercises: [] },
+      { title: 'Warm-Up', exercises: [] },
       { title: 'Resistance Training', exercises: [] },
+      { title: 'Steady State Cardio', exercises: [] },
     ],
   },
   {
     id: 'day-e',
     label: 'E',
     sections: [
-      { title: 'Movement Prep', exercises: [] },
+      { title: 'Warm-Up', exercises: [] },
       { title: 'Resistance Training', exercises: [] },
+      { title: 'Steady State Cardio', exercises: [] },
     ],
   },
 ];

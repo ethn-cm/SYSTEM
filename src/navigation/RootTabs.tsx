@@ -5,7 +5,7 @@ import PlaceholderScreen from '../screens/PlaceholderScreen';
 import InventoryScreen from '../screens/InventoryScreen';
 import TabBar from '../components/TabBar';
 
-const MementoScreen = () => <PlaceholderScreen name="Memento" />;
+const DrawingScreen = () => <PlaceholderScreen name="Drawing" />;
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ export default function RootTabs() {
       <Tab.Screen
         name="Journal"
         component={JournalNavigator}
-        options={{ tabBarLabel: 'J' }}
+        options={{ tabBarLabel: 'Q' }}
       />
       <Tab.Screen
         name="Health"
@@ -29,14 +29,14 @@ export default function RootTabs() {
         options={{ tabBarLabel: 'H' }}
       />
       <Tab.Screen
+        name="Drawing"
+        component={DrawingScreen}
+        options={{ tabBarLabel: 'D' }}
+      />
+      <Tab.Screen
         name="Inventory"
         component={InventoryScreen}
         options={{ tabBarLabel: 'I' }}
-      />
-      <Tab.Screen
-        name="Memento"
-        component={MementoScreen}
-        options={{ tabBarLabel: 'M' }}
       />
     </Tab.Navigator>
   );

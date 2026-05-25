@@ -13,9 +13,9 @@ export default function StatusIndicator({ status, size = 6 }: Props) {
     {
       width: size,
       height: size,
-      borderRadius: status === 'failed' ? 0 : size / 2,
+      borderRadius: status === 'failed' || status === 'abandoned' ? 0 : size / 2,
       backgroundColor: status === 'active' ? colors.white : colors.grayMid,
-      transform: status === 'failed' ? [{ rotate: '45deg' }] : [],
+      transform: status === 'failed' || status === 'abandoned' ? [{ rotate: '45deg' }] : [],
     },
   ];
   return <View style={style} />;

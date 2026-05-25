@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     fontSize: fontSize.micro,
     color: colors.grayLight,
     letterSpacing: tracking.wide,
-    textTransform: 'uppercase',
   },
   value: {
     fontFamily: fonts.medium,

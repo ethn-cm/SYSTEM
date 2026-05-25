@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { WorkoutDay, WorkoutSession } from './workouts';
 import { initialProgram } from './workouts';
+import { quests as initialQuests, type Quest } from './quests';
 
 const KEYS = {
   program: 'health:program',
@@ -8,6 +9,7 @@ const KEYS = {
   workoutLog: (date: string) => `health:workout:${date}`,
   nutrition: (date: string) => `health:nutrition:${date}`,
   nutritionGoals: 'health:nutrition-goals',
+  quests: 'quests:list',
 } as const;
 
 export interface Macros {
@@ -94,4 +96,51 @@ export async function loadGoals(): Promise<Macros> {
 
 export async function saveGoals(goals: Macros): Promise<void> {
   await AsyncStorage.setItem(KEYS.nutritionGoals, JSON.stringify(goals));
+}
+
+// --- Quests ---
+
+export async function loadQuests(): Promise<Quest[]> {
+  const raw = await AsyncStorage.getItem(KEYS.quests);
+  if (raw) return JSON.parse(raw);
+  await AsyncStorage.setItem(KEYS.quests, JSON.stringify(initialQuests));
+  return initialQuests;
+}
+
+export async function saveQuests(quests: Quest[]): Promise<void> {
+  await AsyncStorage.setItem(KEYS.quests, JSON.stringify(quests));
+}
+
+// --- Exercise History ---
+
+export interface WeekEntry {
+  week: number;
+  load: string;
+  reps: string;
+  sets: number;
+}
+
+export type ExerciseHistory = Record<string, WeekEntry[]>;
+
+export async function loadHistory(): Promise<ExerciseHistory> {
+  const raw = await AsyncStorage.getItem('health:history');
+  return raw ? JSON.parse(raw) : {};
+}
+
+export async function saveExerciseWeek(
+  exerciseId: string,
+  entry: WeekEntry,
+  history: ExerciseHistory,
+): Promise<ExerciseHistory> {
+  const entries = [...(history[exerciseId] || [])];
+  const idx = entries.findIndex((e) => e.week === entry.week);
+  if (idx >= 0) {
+    entries[idx] = entry;
+  } else {
+    entries.push(entry);
+    entries.sort((a, b) => a.week - b.week);
+  }
+  const next = { ...history, [exerciseId]: entries };
+  await AsyncStorage.setItem('health:history', JSON.stringify(next));
+  return next;
 }

@@ -1,4 +1,4 @@
-export type QuestStatus = 'active' | 'completed' | 'failed';
+export type QuestStatus = 'active' | 'completed' | 'failed' | 'abandoned';
 
 export type QuestType = 'Main Quest' | 'Side Quest' | 'Bounty' | 'Errand';
 
@@ -23,19 +23,19 @@ export interface Quest {
 export const quests: Quest[] = [
   // ── MAIN QUESTS — always exactly three ──
   {
-    id: 1,
-    title: 'Without The Rope',
+    id: 3,
+    title: 'Manners Maketh Man',
     type: 'Main Quest',
     status: 'active',
-    image: require('../../assets/images/Banners/IMG_6849.jpg'),
-    location: 'Everywhere',
-    objective: 'Operate without safety nets',
+    image: require('../../assets/images/Banners/IMG_6897.jpg'),
+    location: 'In Every Room',
+    objective: 'Be unfailingly considerate',
     details:
-      'The rope is every fallback, every excuse, every soft landing waiting to catch you. Climb without it. Make decisions whose consequences you have to wear. Stop pre-engineering the escape hatch.',
+      'Charm without cruelty. Hold the door. Send the note. Remember the name. The world is largely indifferent — your conduct is the part you control. Let it be impeccable.',
     tasks: [
-      { label: 'Identify the rope', done: false },
-      { label: 'Cut one strand a week', done: false },
-      { label: 'Sit with the exposure', done: false },
+      { label: 'Write three thank-you notes', done: false },
+      { label: 'Listen more than you speak', done: false },
+      { label: 'Default to graciousness under stress', done: false },
     ],
   },
   {
@@ -55,19 +55,19 @@ export const quests: Quest[] = [
     ],
   },
   {
-    id: 3,
-    title: 'Manners Maketh Man',
+    id: 1,
+    title: 'Without The Rope',
     type: 'Main Quest',
     status: 'active',
-    image: require('../../assets/images/Banners/IMG_6897.jpg'),
-    location: 'In Every Room',
-    objective: 'Be unfailingly considerate',
+    image: require('../../assets/images/Banners/IMG_6849.jpg'),
+    location: 'Everywhere',
+    objective: 'Operate without safety nets',
     details:
-      'Charm without cruelty. Hold the door. Send the note. Remember the name. The world is largely indifferent — your conduct is the part you control. Let it be impeccable.',
+      'The rope is every fallback, every excuse, every soft landing waiting to catch you. Climb without it. Make decisions whose consequences you have to wear. Stop pre-engineering the escape hatch.',
     tasks: [
-      { label: 'Write three thank-you notes', done: false },
-      { label: 'Listen more than you speak', done: false },
-      { label: 'Default to graciousness under stress', done: false },
+      { label: 'Identify the rope', done: false },
+      { label: 'Cut one strand a week', done: false },
+      { label: 'Sit with the exposure', done: false },
     ],
   },
 

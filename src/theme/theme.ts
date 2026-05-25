@@ -21,12 +21,12 @@ export const fonts = {
 } as const;
 
 export const fontSize = {
-  micro: 10,
-  caption: 11,
-  body: 13,
-  title: 15,
-  heading: 22,
-  display: 28,
+  micro: 12,
+  caption: 12,
+  body: 12,
+  title: 12,
+  heading: 12,
+  display: 12,
 } as const;
 
 export const spacing = {
@@ -39,10 +39,10 @@ export const spacing = {
 } as const;
 
 export const tracking = {
-  tight: -0.2,
+  tight: 0,
   normal: 0,
-  loose: 1.4,
-  wide: 1.8,
+  loose: 0,
+  wide: 0,
 } as const;
 
 export const breakpoints = {

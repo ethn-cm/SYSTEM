@@ -1,16 +1,20 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { colors, fonts, fontSize, spacing, tracking } from '../theme/theme';
-import { quests } from '../data/quests';
+import type { Quest } from '../data/quests';
 
-export default function HeaderStats() {
+interface Props {
+  quests: Quest[];
+}
+
+export default function HeaderStats({ quests }: Props) {
   const active = quests.filter((q) => q.status === 'active').length;
   const done = quests.filter((q) => q.status === 'completed').length;
   const total = quests.length;
   return (
     <View style={styles.row}>
-      <Stat label="ACTIVE" value={active} />
-      <Stat label="DONE" value={done} />
-      <Stat label="TOTAL" value={total} />
+      <Stat label="Active" value={active} />
+      <Stat label="Done" value={done} />
+      <Stat label="Total" value={total} />
     </View>
   );
 }

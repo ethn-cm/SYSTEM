@@ -40,7 +40,7 @@ export default function SegmentedToggle<T extends string>({
             <Text
               style={[styles.label, isActive && styles.labelActive]}
             >
-              {opt.label.toUpperCase()}
+              {opt.label}
             </Text>
           </Pressable>
         );

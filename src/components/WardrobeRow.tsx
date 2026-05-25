@@ -12,15 +12,15 @@ export default function WardrobeRow({ item }: Props) {
       <View style={[styles.swatch, { backgroundColor: item.swatch }]} />
       <View style={styles.meta}>
         <Text style={styles.brand} numberOfLines={1}>
-          {item.brand.toUpperCase()}
+          {item.brand}
         </Text>
         <Text style={styles.category} numberOfLines={1}>
           {item.category}
         </Text>
       </View>
       <View style={styles.right}>
-        <Text style={styles.detail}>{item.color.toUpperCase()}</Text>
-        <Text style={styles.detail}>{item.season.toUpperCase()}</Text>
+        <Text style={styles.detail}>{item.color}</Text>
+        <Text style={styles.detail}>{item.season}</Text>
       </View>
     </View>
   );

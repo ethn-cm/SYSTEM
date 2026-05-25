@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../theme/theme';
-import HeaderStats from '../components/HeaderStats';
-import ScreenHeader from '../components/ScreenHeader';
+import { loadQuests } from '../data/storage';
+import type { Quest } from '../data/quests';
 import QuestList from '../components/QuestList';
 import QuestDetail from '../components/QuestDetail';
-import { quests, type Quest } from '../data/quests';
 
 export default function SplitLayout() {
-  const [selected, setSelected] = useState<Quest | null>(quests[0] ?? null);
+  const [quests, setQuests] = useState<Quest[]>([]);
+  const [selected, setSelected] = useState<Quest | null>(null);
+
+  const load = useCallback(async () => {
+    const all = await loadQuests();
+    setQuests(all);
+    setSelected((prev) => prev ?? all[0] ?? null);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-      <ScreenHeader title="Journal" right={<HeaderStats />} />
       <View style={styles.body}>
         <View style={styles.sidebar}>
-          <QuestList selectedId={selected?.id ?? null} onSelect={setSelected} />
+          <QuestList quests={quests} selectedId={selected?.id ?? null} onSelect={setSelected} />
         </View>
         <View style={styles.main}>
           <QuestDetail quest={selected} />
