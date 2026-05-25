@@ -1,0 +1,136 @@
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.quest-list-section {
+  border-bottom: 1px solid var(--gray-dim);
+}
+
+.quest-list-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  cursor: pointer;
+  user-select: none;
+}
+
+.quest-list-section-header:hover {
+  color: var(--white);
+}
+
+.quest-list-section-count {
+  font-size: 10px;
+  color: var(--gray-mid);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.quest-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-bottom: 8px;
+}
+
+.quest-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--white);
+  width: 100%;
+  text-align: left;
+  font-family: var(--font);
+  font-size: 13px;
+  transition: opacity 0.15s;
+}
+
+.quest-list-item:hover {
+  opacity: 0.7;
+}
+
+.quest-list-item.selected {
+  opacity: 1;
+}
+
+.quest-list-item.selected .quest-list-item-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.quest-list-item-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--white);
+}
+
+.quest-list-item-indicator.completed {
+  background: var(--gray-mid);
+}
+
+.quest-list-item-indicator.failed {
+  background: var(--gray-mid);
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+.quest-list-item-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quest-list-item.completed .quest-list-item-title,
+.quest-list-item.failed .quest-list-item-title {
+  color: var(--gray-mid);
+}
+
+.quest-list-item-type {
+  font-size: 10px;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+/* Mobile: back button when detail is showing */
+.quest-list-back {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.quest-list-back:hover {
+  color: var(--white);
+}
+
+@media (max-width: 599px) {
+  .quest-list-back {
+    display: flex;
+  }
+}
