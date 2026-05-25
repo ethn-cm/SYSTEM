@@ -30,22 +30,20 @@ export default function QuestList({ quests, selectedId, onSelect }: Props) {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      {/* MAIN QUESTS — square tiles in a row */}
+      {/* MAIN QUESTS — full-width banner cards stacked vertically */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Main Quests</Text>
           <Text style={styles.sectionCount}>{mainQuests.length}</Text>
         </View>
-        <View style={styles.mainQuestRow}>
-          {mainQuests.map((q) => (
-            <MainQuestCard
-              key={q.id}
-              quest={q}
-              selected={q.id === selectedId}
-              onPress={onSelect}
-            />
-          ))}
-        </View>
+        {mainQuests.map((q) => (
+          <MainQuestCard
+            key={q.id}
+            quest={q}
+            selected={q.id === selectedId}
+            onPress={onSelect}
+          />
+        ))}
       </View>
 
       {/* SIDE QUESTS — compact rows */}
@@ -97,10 +95,6 @@ const styles = StyleSheet.create({
   },
   section: {
     marginTop: spacing.lg,
-  },
-  mainQuestRow: {
-    flexDirection: 'row',
-    gap: spacing.sm,
   },
   sectionHeader: {
     flexDirection: 'row',

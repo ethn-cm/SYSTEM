@@ -45,10 +45,10 @@ export default function MainQuestCard({ quest, selected, onPress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     backgroundColor: colors.black,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.grayBorder,
+    marginBottom: spacing.md,
   },
   pressed: {
     backgroundColor: colors.grayDim,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   imageWrap: {
     width: '100%',
-    aspectRatio: 1,
+    height: 120,
     backgroundColor: colors.grayDim,
     alignItems: 'center',
     justifyContent: 'center',
@@ -75,13 +75,17 @@ const styles = StyleSheet.create({
     letterSpacing: tracking.wide,
   },
   meta: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.sm,
-    gap: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md,
+    gap: spacing.md,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grayBorder,
   },
   title: {
+    flex: 1,
     fontFamily: fonts.regular,
     fontSize: fontSize.body,
     color: colors.white,
