@@ -6,6 +6,7 @@ import { colors } from '../theme/theme';
 import { loadQuests, saveQuests } from '../data/storage';
 import type { Quest } from '../data/quests';
 import QuestDetail from '../components/QuestDetail';
+import GradientBackground from '../components/GradientBackground';
 import type { RootStackParamList } from '../navigation/types';
 
 export default function QuestDetailScreen() {
@@ -37,15 +38,17 @@ export default function QuestDetailScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <QuestDetail quest={quest} onAbandon={handleAbandon} />
-    </View>
+    <GradientBackground>
+      <View style={styles.container}>
+        <QuestDetail quest={quest} onAbandon={handleAbandon} />
+      </View>
+    </GradientBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.black,
+    backgroundColor: 'transparent',
   },
 });
