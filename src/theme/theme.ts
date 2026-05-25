@@ -18,6 +18,8 @@ export const fonts = {
   displayBook: 'Idlewild-Book',
   displayMedium: 'Idlewild-Medium',
   displayBold: 'Idlewild-Bold',
+  // Univers Next Pro — Adobe Fonts kit (web only until .otf is bundled)
+  univers: 'univers-next-pro',
 } as const;
 
 export const fontSize = {
