@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import JournalNavigator from './JournalNavigator';
 import PlaceholderScreen from '../screens/PlaceholderScreen';
+import MementoScreen from '../screens/MementoScreen';
 import TabBar from '../components/TabBar';
 
 const Tab = createBottomTabNavigator();
 
-const MapScreen = () => <PlaceholderScreen name="Map" />;
 const InventoryScreen = () => <PlaceholderScreen name="Inventory" />;
 const ProfileScreen = () => <PlaceholderScreen name="Profile" />;
 
@@ -24,9 +24,9 @@ export default function RootTabs() {
         options={{ tabBarLabel: 'JOURNAL' }}
       />
       <Tab.Screen
-        name="Map"
-        component={MapScreen}
-        options={{ tabBarLabel: 'MAP' }}
+        name="Memento"
+        component={MementoScreen}
+        options={{ tabBarLabel: 'MEMENTO' }}
       />
       <Tab.Screen
         name="Inventory"
