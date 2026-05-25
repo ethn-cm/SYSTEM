@@ -29,29 +29,20 @@ export default function QuestDetail({ quest }: Props) {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.headerBlock}>
-        <Text
-          style={[
-            styles.status,
-            quest.status === 'active' && styles.statusActive,
-          ]}
-        >
-          {quest.status.toUpperCase()}
-        </Text>
-        <Text style={styles.title}>{quest.title}</Text>
-
-        <View style={styles.metaBlock}>
-          <MetaRow label="TYPE" value={quest.type} />
-          <MetaRow label="LOCATION" value={quest.location} />
-          <MetaRow label="OBJECTIVE" value={quest.objective} />
+        <View style={styles.titleRow}>
+          <Text style={styles.title}>{quest.title}</Text>
+          <Text
+            style={[
+              styles.status,
+              quest.status === 'active' && styles.statusActive,
+            ]}
+          >
+            {quest.status.toUpperCase()}
+          </Text>
         </View>
       </View>
 
       <View style={styles.divider} />
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>DETAILS</Text>
-        <Text style={styles.body}>{quest.details}</Text>
-      </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>
@@ -80,16 +71,12 @@ export default function QuestDetail({ quest }: Props) {
           ))}
         </View>
       </View>
-    </ScrollView>
-  );
-}
 
-function MetaRow({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={styles.metaRow}>
-      <Text style={styles.metaLabel}>{label}</Text>
-      <Text style={styles.metaValue}>{value}</Text>
-    </View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>DETAILS</Text>
+        <Text style={styles.body}>{quest.details}</Text>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -116,45 +103,29 @@ const styles = StyleSheet.create({
     letterSpacing: tracking.wide,
   },
   headerBlock: {
-    paddingBottom: spacing.lg,
+    paddingBottom: spacing.sm,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+  },
+  title: {
+    flex: 1,
+    fontFamily: fonts.displayLight,
+    fontSize: fontSize.heading,
+    color: colors.white,
+    lineHeight: fontSize.heading * 1.2,
+    letterSpacing: tracking.wide,
   },
   status: {
     fontFamily: fonts.medium,
     fontSize: fontSize.micro,
     color: colors.grayLight,
     letterSpacing: tracking.wide,
-    marginBottom: spacing.sm,
   },
   statusActive: {
-    color: colors.white,
-  },
-  title: {
-    fontFamily: fonts.displayLight,
-    fontSize: fontSize.heading,
-    color: colors.white,
-    lineHeight: fontSize.heading * 1.2,
-    letterSpacing: tracking.wide,
-    marginBottom: spacing.lg,
-  },
-  metaBlock: {
-    gap: 6,
-  },
-  metaRow: {
-    flexDirection: 'row',
-    gap: spacing.md,
-  },
-  metaLabel: {
-    fontFamily: fonts.regular,
-    fontSize: fontSize.micro,
-    color: colors.grayMid,
-    letterSpacing: tracking.loose,
-    width: 80,
-    paddingTop: 1,
-  },
-  metaValue: {
-    flex: 1,
-    fontFamily: fonts.regular,
-    fontSize: fontSize.body,
     color: colors.white,
   },
   divider: {
